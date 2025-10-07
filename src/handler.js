@@ -54,7 +54,7 @@ const addBookHandler = (request, h) => {
         status: 'success',
         message: 'Buku berhasil ditambahkan',
         data: { bookId: id }
-    })
+    }).code(201)
 
 }
 
@@ -70,7 +70,7 @@ const getAllBooksHandler = (request, h) => {
                 }
             })
         }
-    })
+    }).code(200)
 }
 
 const getBookByIdHandler = (request, h) => {
@@ -81,13 +81,13 @@ const getBookByIdHandler = (request, h) => {
         return h.response({
             status: "fail",
             message: "Buku tidak ditemukan"
-        }).code(400)
+        }).code(404)
     }
 
     return h.response({
         status: "success",
         data: { book }
-    })
+    }).code(200)
 }
 
 const editBookByIdHandler = (request, h) => {
@@ -158,7 +158,7 @@ const deleteBookByIdHandler = (request, h) => {
         return h.response({
             status: "fail",
             message: 'Buku gagal dihapus. Id tidak ditemukan',
-        }).code(400)
+        }).code(404)
     }
 
     books.splice(index, 1);
